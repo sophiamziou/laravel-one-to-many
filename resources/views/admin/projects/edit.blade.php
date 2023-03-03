@@ -18,6 +18,14 @@
             <div class="alert alert-danger mt-2">{{$message}}</div>
             @enderror
         </div>
+        <div class="mb-3">
+          <label for="" class="form-label">Seleziona type</label>
+          <select name="type_id" id="type_id">
+            @foreach ($types as $item)
+              <option value="{{ $item['id']}}" {{$item['id'] == old('type_id', $project['type_id']) ? 'selected' : ''}}>{{$item['name']}}</option>
+            @endforeach
+          </select>
+        </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Salva modifiche</button>
         </div>

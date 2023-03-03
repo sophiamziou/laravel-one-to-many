@@ -17,6 +17,14 @@
             <div class="alert alert-danger mt-2">{{$message}}</div>
             @enderror
         </div>
+        <div class="mb-3">
+          <label for="" class="form-label">Seleziona type</label>
+          <select name="type_id" id="type_id">
+            @foreach ($types as $item)
+            <option value="{{ $item['id'] }}">{{ $item['name'] }}</option>
+            @endforeach
+          </select>
+        </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Crea un nuovo progetto</button>
         </div>

@@ -15,6 +15,7 @@
                         <th scope="col">id</th>
                         <th scope="col">title</th>
                         <th scope="col">content</th>
+                        <th scope="col">type</th>
                         <th scope="col">slug</th>
                         <th scope="col">actions</th>
                       </tr>
@@ -25,6 +26,7 @@
                             <th>{{$project['id']}}</th>
                             <td>{{$project['title']}}</td>
                             <td>{{$project['content']}}</td>
+                            <td>{{$project['type'] ? $project['type']['name'] : 'nessun tipo'}}</td>
                             <td>{{$project['slug']}}</td>
                             <td>
                               <div class="d-flex gap-3">
