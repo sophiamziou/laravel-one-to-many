@@ -26,7 +26,6 @@ class UpdateProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'unique:projects', 'max:150'],
             'title' => ['required', Rule::unique('projects')->ignore($this->project)],
             'content' => ['nullable'],
             'date_project' => ['nullable', 'date_format:Y-m-d'],

@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-between m-3">
-                    <h2>LISTA PROGETTI</h2>
-                    <a href="{{ route('admin.projects.create')}}">
+                    <h2>LISTA TIPI DI PROGETTO</h2>
+                    <a href="{{ route('admin.types.create')}}">
                         <button type="button" class="btn btn-primary">NEW</button>
                     </a>
                 </div>
@@ -13,29 +13,25 @@
                     <thead>
                       <tr>
                         <th scope="col">id</th>
-                        <th scope="col">title</th>
-                        <th scope="col">content</th>
-                        <th scope="col">type</th>
+                        <th scope="col">name</th>
                         <th scope="col">slug</th>
                         <th scope="col">actions</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @forelse ($projects as $project)
+                        @forelse ($types as $type)
                           <tr>
-                            <th>{{$project['id']}}</th>
-                            <td>{{$project['title']}}</td>
-                            <td>{{$project['content']}}</td>
-                            <td>{{$project['type'] ? $project['type']['name'] : 'nessun tipo'}}</td>
-                            <td>{{$project['slug']}}</td>
+                            <th>{{$type['id']}}</th>
+                            <td>{{$type['name']}}</td>
+                            <td>{{$type['slug']}}</td>
                             <td>
                               <div class="d-flex gap-3">
-                                <form action="{{route('admin.projects.destroy', ['project' => $project['slug']])}}" method="POST">
+                                <form action="{{route('admin.types.destroy', ['type' => $type['slug']])}}" method="POST">
                                   @csrf
                                   @method('DELETE')
                                   <input class="btn btn-danger confirm-delete-button" type="submit" name="" id="" value="delete">
                                 </form>
-                                <a href="{{ route('admin.projects.show',['project' => $project['slug']]) }}">
+                                <a href="{{ route('admin.types.show',['type' => $type['slug']])}}">
                                   <button type="button" class="btn btn-primary">view</button>
                                 </a>
                               </div>
@@ -46,8 +42,8 @@
                               <div class="row justify-content-center mt-5">
                                   <div class="col-lg-8 col-md-10 col-sm-12">
                                       <div class="alert alert-primary text-center" role="alert">
-                                          <h4 class="alert-heading mb-4">Il database dei tuoi Progetti è vuoto</h4>
-                                          <p class="lead">Clicca sul pulsante "Aggiungi Progetti" per aggiungerli.</p>
+                                          <h4 class="alert-heading mb-4">Il database dei tuoi Tipi di progetto è vuoto</h4>
+                                          <p class="lead">Clicca sul pulsante "Aggiungi Tipi di progetto" per aggiungerli.</p>
                                       </div>
                                   </div>
                               </div>

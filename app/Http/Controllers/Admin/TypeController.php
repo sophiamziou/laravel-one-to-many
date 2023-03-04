@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Type;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
@@ -16,7 +18,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::all();
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -26,7 +29,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -37,7 +40,11 @@ class TypeController extends Controller
      */
     public function store(StoreTypeRequest $request)
     {
-        //
+        $newType = $request->validated();
+        $slug = Type::generateSlug($request->name);
+        $newType['slug'] = $slug;
+        Type::create($newType);
+        return redirect()->route('admin.types.index');
     }
 
     /**
@@ -48,7 +55,7 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -59,7 +66,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('admin.types.edit', compact('type'));
     }
 
     /**
@@ -71,7 +78,11 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Type $type)
     {
-        //
+        $newType = $request->validated();
+        $slug = Type::generateSlug($request->name);
+        $newType['slug'] = $slug;
+        $type->update($newType);
+        return redirect()->route('admin.types.index');
     }
 
     /**
@@ -82,6 +93,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return redirect()->route('admin.types.index');
     }
 }
