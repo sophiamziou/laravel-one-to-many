@@ -25,14 +25,14 @@ class UpdateTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', Rule::unique('types')->ignore($this->type)],
+            'name' => ['required', Rule::unique('types')->ignore($this->type)],
         ];
     }
     public function messages()
     {
         return [
-            'title.required' => 'Il titolo è obbligatorio',
-            'title.max' => 'Il titolo può essere lungo al massimo :max caratteri.',
+            'name.required' => 'Il titolo è obbligatorio',
+            'name.max' => 'Il titolo può essere lungo al massimo :max caratteri.',
         ];
     }
 }
